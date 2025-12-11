@@ -6,12 +6,11 @@ models:
     columns:
       - name: user_id
         description: "ID пользователя"
-      
       - name: user_name
         description: "Имя пользователя"
-      
       - name: course_name
         description: "Название курса, на который записан пользователь"
+
   - name: business_report
     description: "Бизнес-отчет: статистика по курсам и студентам"
     columns:
@@ -33,3 +32,24 @@ models:
         description: "Дата последней записи на курс"
       - name: avg_enrollments_per_course
         description: "Среднее количество записей на курс"
+
+  - name: daily_views_incremental
+    description: "Инкрементальная модель: просмотры уроков пользователями"
+    columns:
+    - name: id
+      description: "Уникальный идентификатор просмотра"
+      tests:
+        - not_null
+        - unique
+    - name: user_id
+      description: "ID пользователя"
+      tests:
+        - not_null
+    - name: lesson_id
+      description: "ID урока"
+      tests:
+        - not_null
+    - name: viewed_at
+      description: "Дата и время просмотра урока"
+      tests:
+        - not_null

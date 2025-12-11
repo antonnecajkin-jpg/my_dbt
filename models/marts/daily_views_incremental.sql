@@ -1,7 +1,7 @@
 {{ 
     config(
         materialized='incremental',
-        unique_key='id',  -- обязательное поле для incremental
+        unique_key='id',  
         schema='marts'
     ) 
 }}
@@ -11,9 +11,9 @@ SELECT
     user_id,
     lesson_id,
     viewed_at
-FROM raw.lesson_views
+FROM {{ source('raw', 'lesson_views') }} 
 
--- Это МАГИЧЕСКАЯ СТРОЧКА для incremental
+
 {% if is_incremental() %}
 WHERE viewed_at > (SELECT MAX(viewed_at) FROM {{ this }})
 {% endif %}
