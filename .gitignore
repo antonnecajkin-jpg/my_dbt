@@ -1,0 +1,13 @@
+
+target/
+dbt_packages/
+logs/
+__pycache__/
+*.pyc
+.vscode/
+.DS_Store
+Thumbs.db
+Desktop.ini
+.env
+.venv/
+venv/

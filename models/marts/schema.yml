@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: simple_enrollments
+    description: "Отчет: какие пользователи на какие курсы записаны"
+    columns:
+      - name: user_id
+        description: "ID пользователя"
+      
+      - name: user_name
+        description: "Имя пользователя"
+      
+      - name: course_name
+        description: "Название курса, на который записан пользователь"
+  - name: business_report
+    description: "Бизнес-отчет: статистика по курсам и студентам"
+    columns:
+      - name: course_name
+        description: "Название курса"
+      - name: category_ru
+        description: "Категория курса"
+      - name: total_students
+        description: "Количество уникальных студентов"
+      - name: total_enrollments
+        description: "Количество всех записей"
+      - name: students_18_30
+        description: "Количество студентов в возрасте 18-30"
+      - name: students_31_50
+        description: "Количество студентов в возрасте 31-50"
+      - name: first_enrollment
+        description: "Дата первой записи на курс"
+      - name: last_enrollment
+        description: "Дата последней записи на курс"
+      - name: avg_enrollments_per_course
+        description: "Среднее количество записей на курс"

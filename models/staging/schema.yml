@@ -1,0 +1,128 @@
+version: 2
+
+models:
+  - name: stg_users_simple
+    description: "Очищенная таблица пользователей для отчетов"
+    columns:
+      - name: user_id
+        description: "Уникальный идентификатор пользователя"
+        tests:
+          - unique
+          - not_null
+      
+      - name: name
+        description: "Имя пользователя"
+        tests:
+          - not_null
+      
+      - name: email
+        description: "Email адрес пользователя"
+        tests:
+          - not_null
+
+  - name: stg_courses_simple
+    description: "Список курсов с названиями"
+    columns:
+      - name: course_id
+        description: "Уникальный идентификатор курса"
+        tests:
+          - unique
+          - not_null
+      
+      - name: title
+        description: "Название курса"
+        tests:
+          - not_null
+
+  - name: stg_users_complete
+    description: "Таблица пользователей с возрастными группами"
+    columns:
+      - name: user_id
+        description: "Уникальный идентификатор пользователя"
+        tests:
+          - unique
+          - not_null
+
+      - name: name
+        description: "Имя пользователя"
+        tests:
+          - not_null
+
+      - name: age
+        description: "Возраст пользователя"
+        tests:
+          - not_null
+
+      - name: email
+        description: "Email адрес пользователя"
+        tests:
+          - not_null
+
+      - name: registration_date
+        description: "Дата регистрации пользователя"
+
+      - name: age_group
+        description: "Возрастная группа пользователя"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ["Младше 18", "18-30", "31-50"]
+
+  - name: stg_courses_complete
+    description: "Курсы с русской категоризацией"
+    columns:
+      - name: course_id
+        description: "Уникальный идентификатор курса"
+        tests:
+          - unique
+          - not_null
+
+      - name: course_name
+        description: "Название курса"
+        tests:
+          - not_null
+
+      - name: category
+        description: "Категория курса (оригинальная)"
+
+      - name: created_at
+        description: "Дата создания курса"
+
+      - name: category_ru
+        description: "Категория курса на русском языке"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ["Анализ данных", "Программирование", "Бизнес", "Другое"]
+
+  - name: int_user_course_activity
+    description: "Активность пользователей по курсам (связка users + courses + enrollments)"
+    columns:
+      - name: user_id
+        description: "ID пользователя"
+        tests:
+          - not_null
+      - name: name
+        description: "Имя пользователя"
+      - name: age_group
+        description: "Возрастная группа пользователя"
+        tests:
+          - accepted_values:
+              values: ["Младше 18", "18-30", "31-50"]
+      - name: course_name
+        description: "Название курса"
+        tests:
+          - not_null
+      - name: category_ru
+        description: "Категория курса на русском языке"
+        tests:
+          - accepted_values:
+              values: ["Анализ данных", "Программирование", "Бизнес", "Другое"]
+      - name: enrolled_at
+        description: "Дата записи пользователя на курс"
+        tests:
+          - not_null
+      - name: enrollment_year
+        description: "Год записи на курс"
+      - name: enrollment_month
+        description: "Месяц записи на курс"
