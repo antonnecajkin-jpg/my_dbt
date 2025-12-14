@@ -36,20 +36,53 @@ models:
   - name: daily_views_incremental
     description: "Инкрементальная модель: просмотры уроков пользователями"
     columns:
-    - name: id
-      description: "Уникальный идентификатор просмотра"
-      tests:
-        - not_null
-        - unique
-    - name: user_id
-      description: "ID пользователя"
-      tests:
-        - not_null
-    - name: lesson_id
-      description: "ID урока"
-      tests:
-        - not_null
-    - name: viewed_at
-      description: "Дата и время просмотра урока"
-      tests:
-        - not_null
+      - name: id
+        description: "Уникальный идентификатор просмотра"
+        tests:
+          - not_null
+          - unique
+      - name: user_id
+        description: "ID пользователя"
+        tests:
+          - not_null
+      - name: lesson_id
+        description: "ID урока"
+        tests:
+          - not_null
+      - name: viewed_at
+        description: "Дата и время просмотра урока"
+        tests:
+          - not_null
+
+  - name: lesson_popularity_summary_source
+    description: "Отчет: популярность уроков по просмотрам и уникальным пользователям"
+    columns:
+      - name: lesson_id
+        description: "ID урока"
+        tests:
+          - not_null
+          - unique
+      - name: lesson_title
+        description: "Название урока"
+        tests:
+          - not_null
+      - name: course_id
+        description: "ID курса"
+        tests:
+          - not_null
+      - name: course_title
+        description: "Название курса"
+        tests:
+          - not_null
+      - name: total_views
+        description: "Общее количество просмотров урока"
+        tests:
+          - not_null
+      - name: unique_users
+        description: "Количество уникальных пользователей, посмотревших урок"
+        tests:
+          - not_null
+      - name: first_view
+        description: "Дата и время первого просмотра"
+      - name: last_view
+        description: "Дата и время последнего просмотра"
